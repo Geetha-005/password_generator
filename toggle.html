@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+      /* Style for the dark mode toggle button */
+#dark-mode-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Mode Button */
+body:not(.dark-mode) #dark-mode-btn {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Dark Mode Button */
+body.dark-mode #dark-mode-btn {
+    background-color: #fff;
+    color: #000;
+}
+
+
+    </style>
+
+</head>
+<body>
+    <label class="switch">
+        <button id="dark-mode-btn">🌞 Light Mode</button>
+
+    </label>
+    
+
+
+
+
+    <script>
+
+        // Select the dark mode toggle button
+const darkModeBtn = document.getElementById("dark-mode-btn");
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+
+    // Update button text based on mode
+    if (document.body.classList.contains("dark-mode")) {
+        darkModeBtn.textContent = "🌙 Dark Mode";
+    } else {
+        darkModeBtn.textContent = "🌞 Light Mode";
+    }
+
+    // Store user preference
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+}
+
+// Add event listener to the button
+darkModeBtn.addEventListener("click", toggleDarkMode);
+
+// Load user preference from local storage
+if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark-mode");
+    darkModeBtn.textContent = "🌙 Dark Mode";
+}
+
+
+
+
+    </script>
+</body>
+</html>
